@@ -15,8 +15,8 @@ const Home: NextPage = () => {
       </Head>
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div className="col-span-1 lg:col-span-8">
-          {posts.map((post, inx) => (
-            <div>
+          {posts.map((post, ind) => (
+            <div key={ind}>
               {post.title}
               {post.excerpt}
             </div>
