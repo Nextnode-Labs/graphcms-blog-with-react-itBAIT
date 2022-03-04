@@ -1,4 +1,4 @@
-const PostWidget = () => {
+const PostWidget: React.FC = () => {
   return <div>Post Widget</div>
 }
 
