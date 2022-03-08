@@ -22,6 +22,11 @@ export type Post = {
   }
 }
 
+export type Categorie = {
+  name: string
+  slug: string
+}
+
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT || ''
 
 export const getPosts = async () => {
@@ -75,7 +80,7 @@ export const getRecentPosts = async () => {
   return result.posts
 }
 
-export const GetSimilarPosts = async (categories: string[], slug: string) => {
+export const getSimilarPosts = async (categories: string[], slug: string) => {
   const query = gql`
     query GetPostDetails($slug: String!, $categories: [String!]) {
       posts(
@@ -96,4 +101,17 @@ export const GetSimilarPosts = async (categories: string[], slug: string) => {
   `
   const result = await request(graphqlAPI, query)
   return result.posts
+}
+
+export const getcategories = async () => {
+  const query = gql`
+    query GetCategories {
+      categories {
+        name
+        slug
+      }
+    }
+  `
+  const result = await request(graphqlAPI, query)
+  return result.categories
 }

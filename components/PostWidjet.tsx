@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import moment from 'moment'
 import Link from 'next/link'
-import { Post } from '../services'
-
-import { getRecentPosts, GetSimilarPosts } from '../services'
+import { Post, getRecentPosts, getSimilarPosts } from '../services'
 
 type Props = {
   categories?: string[]
@@ -14,7 +12,7 @@ const PostWidget: React.FC<Props> = ({ categories, slug }) => {
   const [relatedPosts, setRelatedPosts] = useState<Post[]>([])
   useEffect(() => {
     if (slug) {
-      GetSimilarPosts(categories || [], slug).then((result: Post[]) =>
+      getSimilarPosts(categories || [], slug).then((result: Post[]) =>
         setRelatedPosts(result)
       )
     } else {
