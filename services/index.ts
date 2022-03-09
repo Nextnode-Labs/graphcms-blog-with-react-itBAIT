@@ -1,4 +1,5 @@
 import { request, gql } from 'graphql-request'
+import { RichTextContent } from '@graphcms/rich-text-types'
 
 export type Post = {
   author: {
@@ -18,7 +19,7 @@ export type Post = {
   }
   categories: Categorie[]
   content: {
-    raw: string
+    raw: RichTextContent
   }
 }
 
