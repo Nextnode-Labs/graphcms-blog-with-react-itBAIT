@@ -116,10 +116,7 @@ export const getRecentPosts = async () => {
   return result.posts
 }
 
-export const getSimilarPosts = async (
-  categories: string[],
-  slug: string
-) => {
+export const getSimilarPosts = async (categories: string[], slug: string) => {
   if (!categories) return
   const query = gql`
     query GetPostDetails($slug: String!, $categories: [String!]) {
