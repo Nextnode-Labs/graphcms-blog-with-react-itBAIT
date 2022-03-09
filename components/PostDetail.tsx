@@ -1,10 +1,10 @@
 import React from 'react'
-import { Post } from '../services'
+import { PostType } from '../services'
 import moment from 'moment'
 import { RichText } from '@graphcms/rich-text-react-renderer'
 
 type Props = {
-  post: Post
+  post: PostType
 }
 
 const PostDetail: React.FC<Props> = ({ post }) => {

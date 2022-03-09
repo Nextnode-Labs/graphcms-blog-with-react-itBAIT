@@ -1,4 +1,4 @@
-import { Post as PostType, getPosts, getPostdetails } from '../../services/'
+import { PostType, getPosts, getPostdetails } from '../../services/'
 import React from 'react'
 import {
   PostDetail,

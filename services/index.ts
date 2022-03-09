@@ -1,15 +1,8 @@
 import { request, gql } from 'graphql-request'
 import { RichTextContent } from '@graphcms/rich-text-types'
 
-export type Post = {
-  author: {
-    bio: string
-    name: string
-    id: number
-    photo: {
-      url: string
-    }
-  }
+export type PostType = {
+  author: AuthorType
   createdAt: Date
   slug: string
   title: string
@@ -17,13 +10,22 @@ export type Post = {
   featured_image: {
     url: string
   }
-  categories: Categorie[]
+  categories: CategorieType[]
   content: {
     raw: RichTextContent
   }
 }
 
-export type Categorie = {
+export type AuthorType = {
+  bio: string
+  name: string
+  id: number
+  photo: {
+    url: string
+  }
+}
+
+export type CategorieType = {
   name: string
   slug: string
 }
@@ -114,7 +116,11 @@ export const getRecentPosts = async () => {
   return result.posts
 }
 
-export const getSimilarPosts = async (categories: string[], slug: string) => {
+export const getSimilarPosts = async (
+  categories: CategorieType[] | undefined,
+  slug: string
+) => {
+  if (!categories) return
   const query = gql`
     query GetPostDetails($slug: String!, $categories: [String!]) {
       posts(
