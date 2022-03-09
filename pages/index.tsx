@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { PostCard, PostWidget, Categories } from '../components'
 import { getPosts } from '../services'
-import { Post } from '../services'
+import { PostType } from '../services'
 
 // const posts = [
 //   { title: 'React Testing', excerpt: 'Learn React Testing' },
@@ -10,7 +10,7 @@ import { Post } from '../services'
 // ]
 
 type Props = {
-  posts: { node: Post }[]
+  posts: { node: PostType }[]
 }
 
 const Home: NextPage<Props> = ({ posts }) => {
@@ -38,7 +38,7 @@ const Home: NextPage<Props> = ({ posts }) => {
 }
 
 export async function getStaticProps() {
-  const posts: Post[] = (await getPosts()) || []
+  const posts: PostType[] = (await getPosts()) || []
   return {
     props: { posts },
   }
