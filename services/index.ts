@@ -1,5 +1,6 @@
 import { request, gql } from 'graphql-request'
 import { RichTextContent } from '@graphcms/rich-text-types'
+import { CommentObjType } from '../components/CommentsForm'
 
 export type PostType = {
   author: AuthorType
@@ -140,7 +141,7 @@ export const getSimilarPosts = async (categories: string[], slug: string) => {
   return result.posts
 }
 
-export const getcategories = async () => {
+export const getCategories = async () => {
   const query = gql`
     query GetCategories {
       categories {
@@ -151,4 +152,13 @@ export const getcategories = async () => {
   `
   const result = await request(graphqlAPI, query)
   return result.categories
+}
+
+export const submitComment = async (obj: CommentObjType) => {
+  const result = await fetch('/api/comments', {
+    method: 'POST',
+    body: JSON.stringify(obj),
+  })
+
+  return result.json()
 }

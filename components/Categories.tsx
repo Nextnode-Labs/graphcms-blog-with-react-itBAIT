@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { CategorieType, getcategories } from '../services'
+import { CategorieType, getCategories } from '../services'
 
 const Categories: React.FC = () => {
   const [categories, setCategories] = useState<CategorieType[]>([])
 
   useEffect(() => {
-    getcategories().then((newCategories) => {
+    getCategories().then((newCategories) => {
       setCategories(newCategories)
     })
   }, [])
