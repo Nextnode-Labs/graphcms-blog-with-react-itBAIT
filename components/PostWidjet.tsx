@@ -9,7 +9,7 @@ import {
 } from '../services'
 
 type Props = {
-  categories?: CategorieType[]
+  categories?: string[]
   slug?: string
 }
 
@@ -17,7 +17,7 @@ const PostWidget: React.FC<Props> = ({ categories, slug }) => {
   const [relatedPosts, setRelatedPosts] = useState<PostType[]>([])
   useEffect(() => {
     if (slug) {
-      getSimilarPosts(categories, slug).then((result: PostType[]) =>
+      getSimilarPosts(categories || [], slug).then((result: PostType[]) =>
         setRelatedPosts(result)
       )
     } else {

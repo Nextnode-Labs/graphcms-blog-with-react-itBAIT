@@ -117,7 +117,7 @@ export const getRecentPosts = async () => {
 }
 
 export const getSimilarPosts = async (
-  categories: CategorieType[] | undefined,
+  categories: string[],
   slug: string
 ) => {
   if (!categories) return

@@ -1,9 +1,9 @@
-import { Post } from '../services'
+import { PostType } from '../services'
 import moment from 'moment'
 import Link from 'next/link'
 
 type Props = {
-  post: Post
+  post: PostType
 }
 
 const PostCard: React.FC<Props> = ({ post }) => {
