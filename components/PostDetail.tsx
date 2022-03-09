@@ -2,7 +2,6 @@ import React from 'react'
 import { Post } from '../services'
 import moment from 'moment'
 import { RichText } from '@graphcms/rich-text-react-renderer'
-import { Element } from '@graphcms/rich-text-types'
 
 type Props = {
   post: Post
