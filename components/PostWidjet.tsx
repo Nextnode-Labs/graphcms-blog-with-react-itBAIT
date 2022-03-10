@@ -3,7 +3,6 @@ import moment from 'moment'
 import Link from 'next/link'
 import {
   PostType,
-  CategorieType,
   getRecentPosts,
   getSimilarPosts,
 } from '../services'

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { CategorieType, getCategories } from '../services'
+import { CategoryType, getCategories } from '../services'
 
 const Categories: React.FC = () => {
-  const [categories, setCategories] = useState<CategorieType[]>([])
+  const [categories, setCategories] = useState<CategoryType[]>([])
 
   useEffect(() => {
     getCategories().then((newCategories) => {
@@ -17,7 +17,7 @@ const Categories: React.FC = () => {
 
       {categories.map((categorie, ind) => (
         <div key={ind} className="mb-3 cursor-pointer pb-3">
-          <Link href={`/categorie/${categorie.slug}`}>
+          <Link href={`/category/${categorie.slug}`}>
             <span>{categorie.name}</span>
           </Link>
         </div>

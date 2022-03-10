@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { CategorieType, getCategories } from '../services'
+import { CategoryType, getCategories } from '../services'
 
 const Header: React.FC = () => {
-  const [categories, setCategories] = useState<CategorieType[]>([])
+  const [categories, setCategories] = useState<CategoryType[]>([])
 
   useEffect(() => {
     getCategories().then((newCategories) => {

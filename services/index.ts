@@ -11,7 +11,7 @@ export type PostType = {
   featured_image: {
     url: string
   }
-  categories: CategorieType[]
+  categories: CategoryType[]
   content: {
     raw: RichTextContent
   }
@@ -26,7 +26,7 @@ export type AuthorType = {
   }
 }
 
-export type CategorieType = {
+export type CategoryType = {
   name: string
   slug: string
 }
@@ -172,6 +172,42 @@ export const getComments = async (slug: string) => {
   `
   const result = await request(graphqlAPI, query, { slug })
   return result.comments
+}
+
+export const getCategoryPost = async (slug: string) => {
+  const query = gql`
+    query GetCategoryPost($slug: String!) {
+      postsConnection(where: { categories_some: { slug: $slug } }) {
+        edges {
+          cursor
+          node {
+            author {
+              bio
+              name
+              id
+              photo {
+                url
+              }
+            }
+            createdAt
+            slug
+            title
+            excerpt
+            featured_image {
+              url
+            }
+            categories {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  `
+
+  const result = await request(graphqlAPI, query, { slug })
+  return result.postsConnection.edges
 }
 
 export const getFeaturedPosts = async () => {
