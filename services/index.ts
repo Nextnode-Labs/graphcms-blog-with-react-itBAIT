@@ -174,6 +174,30 @@ export const getComments = async (slug: string) => {
   return result.comments
 }
 
+export const getFeaturedPosts = async () => {
+  const query = gql`
+    query GetCategoryPost() {
+      posts(where: {featured_post: true}) {
+        author {
+          name
+          photo {
+            url
+          }
+        }
+        featured_image {
+          url
+        }
+        title
+        slug
+        createdAt
+      }
+    }   
+  `
+
+  const result = await request(graphqlAPI, query)
+  return result.posts
+}
+
 export const submitComment = async (obj: CommentObjType) => {
   const result = await fetch('/api/comment', {
     method: 'POST',

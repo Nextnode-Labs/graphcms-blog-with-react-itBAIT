@@ -1,14 +1,15 @@
 import { PostType, getPosts, getPostdetails } from '../../services/'
+import { useRouter } from 'next/router'
+
 import React from 'react'
 import {
   PostDetail,
   Categories,
   PostWidget,
-  // Post,
-  // Widget,
   Author,
   Comments,
   CommentsForm,
+  // Loader,
 } from '../../components'
 
 type Props = {
@@ -16,6 +17,10 @@ type Props = {
 }
 
 const PostDetails: React.FC<Props> = ({ post }) => {
+  const router = useRouter()
+  // if (router.isFallback) {
+  //   return <Loader />
+  // }
   return (
     <div className="container mx-auto mb-8 px-10">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
