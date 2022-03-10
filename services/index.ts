@@ -31,6 +31,12 @@ export type CategorieType = {
   slug: string
 }
 
+export type CommentType = {
+  name: string
+  createdAt: Date
+  comment: string
+}
+
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT || ''
 
 export const getPosts = async () => {
@@ -152,6 +158,20 @@ export const getCategories = async () => {
   `
   const result = await request(graphqlAPI, query)
   return result.categories
+}
+
+export const getComments = async (slug: string) => {
+  const query = gql`
+    query GetComments($slug: String!) {
+      comments(where: { post: { slug: $slug } }) {
+        name
+        createdAt
+        comment
+      }
+    }
+  `
+  const result = await request(graphqlAPI, query, { slug })
+  return result.comments
 }
 
 export const submitComment = async (obj: CommentObjType) => {
