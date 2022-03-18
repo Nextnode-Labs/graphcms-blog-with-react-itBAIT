@@ -33,25 +33,12 @@ const Home: NextPage<Props> = ({ posts }) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const posts: PostType[] = (await getPosts()) || []
   return {
     props: { posts },
   }
 }
 
-type Posts = [
-  {
-    node: PostType
-  }
-]
-
-export async function getStaticPaths() {
-  const posts = (await getPosts()) as Posts
-  return {
-    paths: posts.map((post) => ({ params: { slug: post.node.slug } })),
-    fallback: true,
-  }
-}
 
 export default Home
