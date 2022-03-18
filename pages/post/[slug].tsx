@@ -52,7 +52,7 @@ type Params = {
   }
 }
 
-export async function getStaticProps({ params }: Params) {
+export async function getServerSideProps({ params }: Params) {
   const data = await getPostdetails(params.slug)
   return {
     props: { post: data },

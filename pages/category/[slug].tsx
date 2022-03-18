@@ -45,7 +45,7 @@ type Params = {
   }
 }
 
-export async function getStaticProps({ params }: Params) {
+export async function getServerSideProps({ params }: Params) {
   const posts = await getCategoryPost(params.slug)
 
   return {
