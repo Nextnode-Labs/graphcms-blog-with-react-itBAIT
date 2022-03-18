@@ -40,4 +40,18 @@ export async function getStaticProps() {
   }
 }
 
+type Posts = [
+  {
+    node: PostType
+  }
+]
+
+export async function getStaticPaths() {
+  const posts = (await getPosts()) as Posts
+  return {
+    paths: posts.map((post) => ({ params: { slug: post.node.slug } })),
+    fallback: true,
+  }
+}
+
 export default Home
