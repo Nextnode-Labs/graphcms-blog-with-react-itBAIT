@@ -30,7 +30,7 @@ const Header: React.FC = () => {
                 <div className="mt-2">
                   <Link href={`/api/auth/logout`}>Logout</Link>
                 </div>
-                <img
+                <img className='rounded-full'
                   src={user.picture as string | undefined}
                   alt={user.name as string | undefined}
                 />
